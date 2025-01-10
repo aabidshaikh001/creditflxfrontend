@@ -30,7 +30,7 @@ export default function ApplyNowModal({ isOpen, onClose }: { isOpen: boolean; on
     }
 
     try {
-      await axios.post('http://localhost:7000/api/auth/register', {
+      await axios.post('https://backend.creditsfix.in/api/auth/register', {
         name,
         email,
         phone,

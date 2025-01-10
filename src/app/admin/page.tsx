@@ -20,7 +20,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     // Initialize the Socket.IO connection
-    socketRef.current = io("http://localhost:7000");
+    socketRef.current = io("https://backend.creditsfix.in");
 
     return () => {
       // Cleanup on component unmount
@@ -187,7 +187,7 @@ const AdminDashboard = () => {
 
     try {
       setIsUploading(true);
-      const response = await axios.post('http://localhost:7000/api/upload-qr', formData, {
+      const response = await axios.post('https://backend.creditsfix.in/api/upload-qr', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setUploadedQrImage(response.data.url); // Assuming server responds with the uploaded image URL
@@ -236,7 +236,7 @@ const AdminDashboard = () => {
   // Function to handle admin login
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:7000/admin/login', loginData);
+      const response = await axios.post('https://backend.creditsfix.in/admin/login', loginData);
       if (response.status === 200) {
         setIsLoggedIn(true); // Update login state
         fetchAdminDetails(); // Fetch user data after successful login
@@ -250,7 +250,7 @@ const AdminDashboard = () => {
 
   const fetchAdminDetails = async () => {
     try {
-      const response = await axios.get('http://localhost:7000/admin/users');
+      const response = await axios.get('https://backend.creditsfix.in/admin/users');
     
       setAdminDetails(response.data.users);
       setIsLoading(false);
@@ -266,7 +266,7 @@ const AdminDashboard = () => {
   
     try {
       // Send delete request to the server
-      await axios.delete(`http://localhost:7000/admin/userDetails/${userId}`);
+      await axios.delete(`https://backend.creditsfix.in/admin/userDetails/${userId}`);
   
       // Update the state to reflect the deleted user
       setDetails((prevDetails) => {
@@ -298,7 +298,7 @@ const AdminDashboard = () => {
   // Fetch user details separately
   const fetchUserDetails = async () => {
     try {
-      const response = await axios.get('http://localhost:7000/admin/userDetails');
+      const response = await axios.get('https://backend.creditsfix.in/admin/userDetails');
       setDetails(response.data.userDetails);
     } catch (error) {
       console.error('Error fetching user details:', error);
